@@ -50,6 +50,11 @@ async function run() {
       const result= await userCollection.insertOne(user)
       res.send(result)
     })
+    app.put('/users/:id', async(req,res)=>{
+      const id =req.params.id;
+      const updatedUser=req.body
+      console.log(updatedUser);
+    })
 
     app.delete("/users/:id", async(req,res)=>{
       const id=req.params.id
