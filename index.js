@@ -35,6 +35,14 @@ async function run() {
       const result= await cursor.toArray();
       res.send(result);
     })
+
+    app.get("/users/:id", async(req,res)=>{
+      const id=req.params.id
+      const query = { _id: new ObjectId(id) };
+      const result=await userCollection.findOne(query)
+      res.send(result)
+    })
+
     app.post('/users', async(req, res)=>{
       const user = req.body;
       console.log('new user', user);
@@ -42,6 +50,7 @@ async function run() {
       const result= await userCollection.insertOne(user)
       res.send(result)
     })
+
     app.delete("/users/:id", async(req,res)=>{
       const id=req.params.id
       console.log("Please delete from database id",id);
